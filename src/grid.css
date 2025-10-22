@@ -1,16 +1,15 @@
 /* General Styles */
 .grid {
   padding: 10px;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   font-family: Arial, sans-serif;
-  overflow: hidden;
   box-sizing: border-box;
 }
 
 /* Instructions */
-.grid  p {
+.grid > p {
   text-align: center;
   margin: 5px 0 10px 0;
   color: #333;
@@ -25,7 +24,7 @@
   gap: 8px;
   align-items: center;
   justify-content: center;
- 
+  margin-bottom: 10px;
   padding: 10px;
   background-color: #f5f5f5;
   border-radius: 6px;
@@ -50,15 +49,6 @@
   font-size: 12px;
 }
 
-.node-type-selector button:hover:not(:disabled) {
-  transform: translateY(-1px);
-}
-
-.node-type-selector button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
 /* Button Colors */
 .node-type-selector button.wall {
   background-color: #2c3e50;
@@ -73,6 +63,15 @@
 .node-type-selector button.end {
   background-color: #e74c3c;
   color: white;
+}
+
+.node-type-selector button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.node-type-selector button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /* Controls Section */
@@ -122,17 +121,16 @@
   background-color: #f39c12; /* Enhanced BFS - Orange */
 }
 
-/* Grid Container - Takes remaining space */
+/* Grid Container */
 .grid-container {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
   margin-bottom: 10px;
-  min-height: 0; /* Important for flex child to shrink properly */
-  gap: 2px;
+  min-height: 0;
+  overflow: auto;
 }
 
 .row {
@@ -220,11 +218,13 @@
   font-size: 12px;
 }
 
-/* Node Styles - Make nodes smaller to fit */
+/* Node Styles */
 .Node {
   border: 1px solid #bdc3c7;
   display: inline-block;
   box-sizing: border-box;
+  width: 25px;
+  height: 25px;
 }
 
 .Node-start {
@@ -247,69 +247,400 @@
   background-color: #f1c40f;
 }
 
-/* Responsive Design for very small screens */
-@media (max-width: 768px) {
+/* ===== TABLET MEDIA QUERIES (768px - 1024px) ===== */
+@media (max-width: 1024px) {
   .grid {
-    padding: 5px;
-    height: 100vh;
+    padding: 8px;
+    min-height: 100vh;
+    overflow: visible;
   }
   
-  .node-type-selector,
-  .controls,
-  .feauters {
-    gap: 5px;
+  .grid > p {
+    font-size: 13px;
+    margin: 4px 0 8px 0;
   }
   
-  .node-type-selector button,
-  .controls button,
-  .feauters button {
-    min-width: 60px;
-    padding: 6px 10px;
+  /* Node Type Selector - Tablet */
+  .node-type-selector {
+    gap: 6px;
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+  
+  .node-type-selector label {
+    font-size: 13px;
+    margin-right: 6px;
+  }
+  
+  .node-type-selector button {
+    padding: 7px 14px;
+    min-width: 65px;
     font-size: 11px;
   }
   
+  /* Controls - Tablet */
+  .controls {
+    gap: 6px;
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+  
+  .controls button {
+    padding: 7px 14px;
+    min-width: 90px;
+    font-size: 11px;
+  }
+  
+  /* Features - Tablet */
+  .feauters {
+    gap: 6px;
+    padding: 10px;
+  }
+  
+  .feauters button {
+    padding: 7px 10px;
+    min-width: 110px;
+    font-size: 11px;
+  }
+  
+  /* Speed Control - Tablet */
   .speed-control {
-    min-width: 120px;
+    min-width: 140px;
+    padding: 7px;
+  }
+  
+  .speed-control input[type="range"] {
+    max-width: 140px;
+  }
+  
+  .speed-control label {
+    font-size: 11px;
+  }
+  
+  /* Node Size - Tablet */
+  .Node {
+    width: 22px;
+    height: 22px;
+  }
+  
+  /* Enable scroll for grid container on tablet */
+  .grid-container {
+    overflow: auto;
+    max-height: 50vh;
+  }
+}
+
+@media (max-width: 900px) {
+  .Node {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .feauters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .feauters button {
+    width: 100%;
+    max-width: 250px;
+    margin: 2px auto;
+  }
+  
+  .speed-control {
+    width: 100%;
+    max-width: 250px;
+    margin: 5px auto;
+  }
+}
+
+/* ===== MOBILE MEDIA QUERIES (480px - 767px) ===== */
+@media (max-width: 767px) {
+  .grid {
+    padding: 5px;
+    min-height: 100vh;
+    overflow-y: auto;
   }
   
   .grid > p {
     font-size: 12px;
     margin: 3px 0 6px 0;
   }
-}
-
-@media (max-width: 480px) {
-  .grid {
-    padding: 3px;
+  
+  /* Stack sections vertically on mobile */
+  .node-type-selector,
+  .controls,
+  .feauters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 5px;
   }
   
-  .node-type-selector button,
-  .controls button,
+  /* Node Type Selector - Mobile */
+  .node-type-selector {
+    padding: 6px;
+    margin-bottom: 6px;
+  }
+  
+  .node-type-selector label {
+    text-align: center;
+    margin-right: 0;
+    margin-bottom: 5px;
+    font-size: 12px;
+  }
+  
+  .node-type-selector button {
+    width: 100%;
+    max-width: 200px;
+    margin: 2px auto;
+    padding: 6px 12px;
+    min-width: auto;
+    font-size: 11px;
+  }
+  
+  /* Controls - Mobile */
+  .controls {
+    padding: 6px;
+    margin-bottom: 6px;
+  }
+  
+  .controls button {
+    width: 100%;
+    max-width: 200px;
+    margin: 2px auto;
+    padding: 6px 12px;
+    min-width: auto;
+    font-size: 11px;
+  }
+  
+  /* Features - Mobile */
+  .feauters {
+    padding: 8px;
+  }
+  
   .feauters button {
-    min-width: 50px;
+    width: 100%;
+    max-width: 200px;
+    margin: 2px auto;
+    padding: 6px 10px;
+    min-width: auto;
+    font-size: 11px;
+  }
+  
+  /* Speed Control - Mobile */
+  .speed-control {
+    width: 100%;
+    max-width: 200px;
+    margin: 5px auto;
+    min-width: auto;
+    padding: 6px;
+  }
+  
+  .speed-control input[type="range"] {
+    max-width: 180px;
+  }
+  
+  .speed-control label {
+    font-size: 11px;
+  }
+  
+  /* Node Size - Mobile */
+  .Node {
+    width: 18px;
+    height: 18px;
+  }
+  
+  /* Grid container scroll for mobile */
+  .grid-container {
+    overflow: auto;
+    max-height: 40vh;
+    margin-bottom: 8px;
+  }
+}
+
+/* ===== SMALL MOBILE MEDIA QUERIES (320px - 479px) ===== */
+@media (max-width: 479px) {
+  .grid {
+    padding: 3px;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+  
+  .grid > p {
+    font-size: 11px;
+    margin: 2px 0 4px 0;
+  }
+  
+  /* Node Type Selector - Small Mobile */
+  .node-type-selector {
+    padding: 4px;
+    margin-bottom: 4px;
+  }
+  
+  .node-type-selector label {
+    font-size: 11px;
+    margin-bottom: 3px;
+  }
+  
+  .node-type-selector button {
+    max-width: 180px;
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+  
+  /* Controls - Small Mobile */
+  .controls {
+    padding: 4px;
+    margin-bottom: 4px;
+  }
+  
+  .controls button {
+    max-width: 180px;
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+  
+  /* Features - Small Mobile */
+  .feauters {
+    padding: 6px;
+  }
+  
+  .feauters button {
+    max-width: 180px;
     padding: 5px 8px;
     font-size: 10px;
   }
   
+  /* Speed Control - Small Mobile */
   .speed-control {
-    min-width: 100px;
+    max-width: 180px;
+    padding: 5px;
+  }
+  
+  .speed-control input[type="range"] {
+    max-width: 160px;
   }
   
   .speed-control label {
     font-size: 10px;
   }
+  
+  /* Node Size - Small Mobile */
+  .Node {
+    width: 15px;
+    height: 15px;
+    border-width: 0.5px;
+  }
+  
+  /* Grid container scroll for small mobile */
+  .grid-container {
+    max-height: 35vh;
+    margin-bottom: 6px;
+  }
 }
 
-/* Ensure no vertical overflow */
+/* ===== EXTRA SMALL MOBILE (below 320px) ===== */
+@media (max-width: 319px) {
+  .Node {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .node-type-selector button,
+  .controls button,
+  .feauters button {
+    max-width: 160px;
+    padding: 4px 8px;
+    font-size: 9px;
+  }
+  
+  .speed-control {
+    max-width: 160px;
+  }
+  
+  .grid-container {
+    max-height: 30vh;
+  }
+}
+
+/* ===== LANDSCAPE ORIENTATION OPTIMIZATIONS ===== */
+@media (max-height: 600px) and (orientation: landscape) {
+  .grid {
+    padding: 5px;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+  
+  .grid > p {
+    margin: 2px 0;
+    font-size: 11px;
+  }
+  
+  .node-type-selector,
+  .controls,
+  .feauters {
+    padding: 4px;
+    margin-bottom: 4px;
+  }
+  
+  .node-type-selector button,
+  .controls button,
+  .feauters button {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+  
+  .Node {
+    width: 18px;
+    height: 18px;
+  }
+  
+  /* Better grid scrolling in landscape */
+  .grid-container {
+    max-height: 45vh;
+    overflow: auto;
+  }
+}
+
+/* Ensure proper scrolling behavior */
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
+}
+
+/* Smooth scrolling for mobile */
+@media (max-width: 767px) {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  .grid-container {
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  }
+}
+
+/* Hover effects for non-touch devices */
+@media (hover: hover) {
+  .node-type-selector button:hover:not(:disabled),
+  .controls button:hover:not(:disabled),
+  .feauters button:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+}
+
+/* Disabled state consistency */
+.node-type-selector button:disabled,
+.controls button:disabled,
+.feauters button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
 }

@@ -1,4 +1,3 @@
-// Node.jsx
 import React from "react";
 import "./node.css";
 
@@ -12,9 +11,19 @@ const Node = ({
   isPath,
   onMouseDown,
   onMouseEnter,
-  size = 22,
+  size = 19,
 }) => {
-  // Use simple, consistent class names: node, start, end, wall, visited, path
+  // 🔹 Responsive node size adjustment
+  let responsiveSize = size;
+
+  if (window.innerWidth <= 480) {
+    responsiveSize = 12; // small phones
+  } else if (window.innerWidth <= 768) {
+    responsiveSize = 16; // medium phones
+  } else if (window.innerWidth <= 1024) {
+    responsiveSize = 20; // tablets
+  }
+
   const classNames = [
     "node",
     isStart ? "start" : "",
@@ -32,13 +41,11 @@ const Node = ({
       onMouseDown={onMouseDown}
       onMouseEnter={onMouseEnter}
       style={{
-        width: `${size}px`,
-        height: `${size}px`,
+        width: `${responsiveSize}px`,
+        height: `${responsiveSize}px`,
       }}
     />
   );
 };
 
 export default Node;
-
-

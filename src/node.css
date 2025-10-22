@@ -1,75 +1,90 @@
+/* ===========================
+   🌐 Base Node Styles
+=========================== */
 .node {
   border-radius: 5px;
   border: 1px solid #ddd;
   background-color: #f0f0f0;
- 
   transition: all 0.2s ease;
   cursor: pointer;
   user-select: none;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  margin: 0px 2px;
-  
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin: 1px;
+  display: inline-block;
+  width: 25px;
+  height: 30px;
 }
 
-.node-wall {
+/* Hover effect */
+.node:hover {
+  transform: scale(1.1);
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
+}
+
+/* ===========================
+   🧱 Node States
+=========================== */
+.node.wall {
   background-color: #333;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-.node-start {
+.node.start {
   background-color: #4caf50;
   box-shadow: 0 2px 6px rgba(0, 128, 0, 0.5);
 }
 
-.node-end {
+.node.end {
   background-color: #f44336;
   box-shadow: 0 2px 6px rgba(255, 0, 0, 0.5);
 }
 
-.node:hover {
-  transform: scale(1.1);
-  box-shadow: 0 3px 7px rgba(0,0,0,0.2);
+.node.visited {
+  animation: visitedAnimation 0.4s ease-in-out forwards;
 }
-.node { width: 30px; height: 30px; border: 1px solid #ccc; display: inline-block; }
-.node.start { background-color: green; }
-.node.end { background-color: red; }
-.node.wall { background-color: black; }
-.node.visited { background-color: rgb(185, 230, 173); }
-.node.path { background-color: gold; }
 
+.node.path {
+  animation: pathAnimation 0.4s ease-in-out forwards;
+}
 
-/* ✅ Responsive sizing for smaller screens */
-@media (max-width: 1024px) {
-  .node {
-    width: 20px !important;
-    height: 20px !important;
+/* ===========================
+   🎬 Animations
+=========================== */
+@keyframes visitedAnimation {
+  0% {
+    transform: scale(0.3);
+    background-color: rgba(52, 152, 219, 0.2); /* light blue */
+    border-radius: 50%;
+  }
+  25% {
+    transform: scale(1.1);
+    background-color: rgba(46, 204, 113, 0.5); /* green tint */
+  }
+  50% {
+    background-color: rgba(241, 196, 15, 0.7); /* yellow */
+  }
+  100% {
+    transform: scale(1);
+    background-color: rgb(185, 230, 173); /* soft green */
+    border-radius: 5px;
   }
 }
 
-@media (max-width: 768px) {
-  .node {
-    width: 16px !important;
-    height: 16px !important;
+@keyframes pathAnimation {
+  0% {
+    transform: scale(0.6);
+    background-color: #f39c12; /* bright orange */
+    box-shadow: 0 0 4px #f39c12;
+  }
+  50% {
+    transform: scale(1.2);
+    background-color: gold;
+    box-shadow: 0 0 8px gold;
+  }
+  100% {
+    transform: scale(1);
+    background-color: gold;
+    box-shadow: 0 0 2px gold;
   }
 }
 
-@media (max-width: 480px) {
-  .node {
-    width: 12px !important;
-    height: 12px !important;
-  }
-}
-
-/* Small margin to prevent overflow touching edges */
-.grid {
-  padding: 10px;
-  overflow-x: auto;
-}
-
-/* Optional – keeps grid centered and with breathing space */
-.grid-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 12px;
-}

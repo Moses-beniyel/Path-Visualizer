@@ -365,28 +365,9 @@ html, body {
 }
 
 /* Make nodes auto-resize based on available width */
-.Node {
-  border: 1px solid #bdc3c7;
-  display: inline-block;
-  box-sizing: border-box;
-  transition: all 0.2s ease;
-}
 
-/* Desktop Node Size */
-@media (min-width: 1025px) {
-  .Node {
-    width: 22px;
-    height: 22px;
-  }
-}
 
-/* Tablet Node Size */
-@media (max-width: 1024px) and (min-width: 769px) {
-  .Node {
-    width: 18px;
-    height: 18px;
-  }
-}
+
 
 /* Mobile Node Size (fits screen neatly with outline space) */
 @media (max-width: 768px) {
@@ -396,10 +377,7 @@ html, body {
     margin: 0 auto;
   }
 
-  .Node {
-    width: 14px;
-    height: 14px;
-  }
+
 }
 
 /* Very Small Screens (under 480px) */
@@ -408,10 +386,5 @@ html, body {
     width: 92%;
     padding: 6px;
     margin: 0 auto;
-  }
-
-  .Node {
-    width: 10px;
-    height: 10px;
   }
 }

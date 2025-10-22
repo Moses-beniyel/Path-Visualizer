@@ -37,21 +37,39 @@
 .node.visited { background-color: rgb(185, 230, 173); }
 .node.path { background-color: gold; }
 
-.Node {
-  width: 20px;
-  height: 20px;
+
+/* ✅ Responsive sizing for smaller screens */
+@media (max-width: 1024px) {
+  .node {
+    width: 20px !important;
+    height: 20px !important;
+  }
 }
 
 @media (max-width: 768px) {
-  .Node {
-    width: 15px;
-    height: 15px;
+  .node {
+    width: 16px !important;
+    height: 16px !important;
   }
 }
 
 @media (max-width: 480px) {
-  .Node {
-    width: 10px;
-    height: 10px;
+  .node {
+    width: 12px !important;
+    height: 12px !important;
   }
+}
+
+/* Small margin to prevent overflow touching edges */
+.grid {
+  padding: 10px;
+  overflow-x: auto;
+}
+
+/* Optional – keeps grid centered and with breathing space */
+.grid-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
 }

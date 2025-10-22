@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+// Node.jsx
+import React from "react";
 import "./node.css";
 
 const Node = ({
@@ -11,48 +12,33 @@ const Node = ({
   isPath,
   onMouseDown,
   onMouseEnter,
-  baseSize = 19, // default desktop size
+  size = 22,
 }) => {
-  const [size, setSize] = useState(baseSize);
-
-  // Auto adjust node size on window resize (responsive)
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      if (width <= 480) setSize(10);      // small mobile
-      else if (width <= 768) setSize(14); // tablet / mid screens
-      else if (width <= 1024) setSize(18); // small laptops
-      else setSize(baseSize);             // desktop
-    };
-
-    handleResize(); // initial call
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [baseSize]);
-
-  const extraClass = isStart
-    ? "node-start"
-    : isEnd
-    ? "node-end"
-    : isWall
-    ? "node-wall"
-    : isPath
-    ? "node-path"
-    : isVisited
-    ? "node-visited"
-    : "";
+  // Use simple, consistent class names: node, start, end, wall, visited, path
+  const classNames = [
+    "node",
+    isStart ? "start" : "",
+    isEnd ? "end" : "",
+    isWall ? "wall" : "",
+    isVisited ? "visited" : "",
+    isPath ? "path" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <div
-      className={`node ${extraClass}`}
+      className={classNames}
       onMouseDown={onMouseDown}
       onMouseEnter={onMouseEnter}
       style={{
         width: `${size}px`,
         height: `${size}px`,
       }}
-    ></div>
+    />
   );
 };
 
 export default Node;
+
+

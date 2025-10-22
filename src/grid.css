@@ -1,15 +1,16 @@
 /* General Styles */
 .grid {
   padding: 10px;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   font-family: Arial, sans-serif;
+  overflow: hidden;
   box-sizing: border-box;
 }
 
 /* Instructions */
-.grid > p {
+.grid p {
   text-align: center;
   margin: 5px 0 10px 0;
   color: #333;
@@ -24,7 +25,6 @@
   gap: 8px;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10px;
   padding: 10px;
   background-color: #f5f5f5;
   border-radius: 6px;
@@ -49,6 +49,15 @@
   font-size: 12px;
 }
 
+.node-type-selector button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.node-type-selector button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 /* Button Colors */
 .node-type-selector button.wall {
   background-color: #2c3e50;
@@ -63,15 +72,6 @@
 .node-type-selector button.end {
   background-color: #e74c3c;
   color: white;
-}
-
-.node-type-selector button:hover:not(:disabled) {
-  transform: translateY(-1px);
-}
-
-.node-type-selector button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
 }
 
 /* Controls Section */
@@ -128,9 +128,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: auto;
   margin-bottom: 10px;
   min-height: 0;
-  overflow: auto;
+  gap: 2px;
 }
 
 .row {
@@ -174,23 +175,23 @@
 
 /* Features Button Colors */
 .feauters button:nth-child(1) {
-  background-color: #e67e22; /* Clear Path - Orange */
+  background-color: #e67e22; /* Clear Path */
 }
 
 .feauters button:nth-child(2) {
-  background-color: #95a5a6; /* Clear Walls - Gray */
+  background-color: #95a5a6; /* Clear Walls */
 }
 
 .feauters button:nth-child(3) {
-  background-color: #34495e; /* Reset Start/End - Dark Blue */
+  background-color: #34495e; /* Reset Start/End */
 }
 
 .feauters button:nth-child(4) {
-  background-color: #16a085; /* Random Walls - Teal */
+  background-color: #16a085; /* Random Walls */
 }
 
 .feauters button:nth-child(6) {
-  background-color: #c0392b; /* Pause/Resume - Red */
+  background-color: #c0392b; /* Pause/Resume */
 }
 
 /* Speed Control */
@@ -223,8 +224,6 @@
   border: 1px solid #bdc3c7;
   display: inline-block;
   box-sizing: border-box;
-  width: 25px;
-  height: 25px;
 }
 
 .Node-start {
@@ -247,400 +246,172 @@
   background-color: #f1c40f;
 }
 
-/* ===== TABLET MEDIA QUERIES (768px - 1024px) ===== */
+/* Responsive Design */
 @media (max-width: 1024px) {
   .grid {
     padding: 8px;
-    min-height: 100vh;
-    overflow: visible;
   }
-  
-  .grid > p {
-    font-size: 13px;
-    margin: 4px 0 8px 0;
-  }
-  
-  /* Node Type Selector - Tablet */
-  .node-type-selector {
-    gap: 6px;
-    padding: 8px;
-    margin-bottom: 8px;
-  }
-  
-  .node-type-selector label {
-    font-size: 13px;
-    margin-right: 6px;
-  }
-  
-  .node-type-selector button {
-    padding: 7px 14px;
-    min-width: 65px;
-    font-size: 11px;
-  }
-  
-  /* Controls - Tablet */
-  .controls {
-    gap: 6px;
-    padding: 8px;
-    margin-bottom: 8px;
-  }
-  
-  .controls button {
-    padding: 7px 14px;
-    min-width: 90px;
-    font-size: 11px;
-  }
-  
-  /* Features - Tablet */
-  .feauters {
-    gap: 6px;
-    padding: 10px;
-  }
-  
-  .feauters button {
-    padding: 7px 10px;
-    min-width: 110px;
-    font-size: 11px;
-  }
-  
-  /* Speed Control - Tablet */
-  .speed-control {
-    min-width: 140px;
-    padding: 7px;
-  }
-  
-  .speed-control input[type="range"] {
-    max-width: 140px;
-  }
-  
-  .speed-control label {
-    font-size: 11px;
-  }
-  
-  /* Node Size - Tablet */
-  .Node {
-    width: 22px;
-    height: 22px;
-  }
-  
-  /* Enable scroll for grid container on tablet */
-  .grid-container {
-    overflow: auto;
-    max-height: 50vh;
-  }
-}
 
-@media (max-width: 900px) {
-  .Node {
-    width: 20px;
-    height: 20px;
-  }
-  
-  .feauters {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  .feauters button {
-    width: 100%;
-    max-width: 250px;
-    margin: 2px auto;
-  }
-  
-  .speed-control {
-    width: 100%;
-    max-width: 250px;
-    margin: 5px auto;
-  }
-}
-
-/* ===== MOBILE MEDIA QUERIES (480px - 767px) ===== */
-@media (max-width: 767px) {
-  .grid {
-    padding: 5px;
-    min-height: 100vh;
-    overflow-y: auto;
-  }
-  
-  .grid > p {
-    font-size: 12px;
-    margin: 3px 0 6px 0;
-  }
-  
-  /* Stack sections vertically on mobile */
-  .node-type-selector,
   .controls,
+  .node-type-selector,
   .feauters {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 5px;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
-  
-  /* Node Type Selector - Mobile */
-  .node-type-selector {
-    padding: 6px;
-    margin-bottom: 6px;
-  }
-  
-  .node-type-selector label {
-    text-align: center;
-    margin-right: 0;
-    margin-bottom: 5px;
-    font-size: 12px;
-  }
-  
-  .node-type-selector button {
-    width: 100%;
-    max-width: 200px;
-    margin: 2px auto;
-    padding: 6px 12px;
-    min-width: auto;
-    font-size: 11px;
-  }
-  
-  /* Controls - Mobile */
-  .controls {
-    padding: 6px;
-    margin-bottom: 6px;
-  }
-  
-  .controls button {
-    width: 100%;
-    max-width: 200px;
-    margin: 2px auto;
-    padding: 6px 12px;
-    min-width: auto;
-    font-size: 11px;
-  }
-  
-  /* Features - Mobile */
-  .feauters {
-    padding: 8px;
-  }
-  
+
+  .controls button,
+  .node-type-selector button,
   .feauters button {
-    width: 100%;
-    max-width: 200px;
-    margin: 2px auto;
+    font-size: 11px;
     padding: 6px 10px;
-    min-width: auto;
-    font-size: 11px;
   }
-  
-  /* Speed Control - Mobile */
-  .speed-control {
-    width: 100%;
-    max-width: 200px;
-    margin: 5px auto;
-    min-width: auto;
+}
+
+@media (max-width: 768px) {
+  .grid {
     padding: 6px;
   }
-  
-  .speed-control input[type="range"] {
-    max-width: 180px;
+
+  .controls,
+  .node-type-selector,
+  .feauters {
+    flex-direction: column;
+    align-items: stretch;
   }
-  
-  .speed-control label {
+
+  .controls button,
+  .node-type-selector button,
+  .feauters button {
+    width: 100%;
+    min-width: unset;
     font-size: 11px;
   }
-  
-  /* Node Size - Mobile */
-  .Node {
-    width: 18px;
-    height: 18px;
+
+  .grid > p {
+    font-size: 12px;
   }
-  
-  /* Grid container scroll for mobile */
+
   .grid-container {
     overflow: auto;
-    max-height: 40vh;
-    margin-bottom: 8px;
   }
 }
 
-/* ===== SMALL MOBILE MEDIA QUERIES (320px - 479px) ===== */
-@media (max-width: 479px) {
+@media (max-width: 480px) {
   .grid {
-    padding: 3px;
-    min-height: 100vh;
-    overflow-y: auto;
-  }
-  
-  .grid > p {
-    font-size: 11px;
-    margin: 2px 0 4px 0;
-  }
-  
-  /* Node Type Selector - Small Mobile */
-  .node-type-selector {
     padding: 4px;
-    margin-bottom: 4px;
   }
-  
-  .node-type-selector label {
-    font-size: 11px;
-    margin-bottom: 3px;
-  }
-  
-  .node-type-selector button {
-    max-width: 180px;
-    padding: 5px 10px;
-    font-size: 10px;
-  }
-  
-  /* Controls - Small Mobile */
-  .controls {
-    padding: 4px;
-    margin-bottom: 4px;
-  }
-  
-  .controls button {
-    max-width: 180px;
-    padding: 5px 10px;
-    font-size: 10px;
-  }
-  
-  /* Features - Small Mobile */
-  .feauters {
-    padding: 6px;
-  }
-  
-  .feauters button {
-    max-width: 180px;
-    padding: 5px 8px;
-    font-size: 10px;
-  }
-  
-  /* Speed Control - Small Mobile */
-  .speed-control {
-    max-width: 180px;
-    padding: 5px;
-  }
-  
-  .speed-control input[type="range"] {
-    max-width: 160px;
-  }
-  
-  .speed-control label {
-    font-size: 10px;
-  }
-  
-  /* Node Size - Small Mobile */
-  .Node {
-    width: 15px;
-    height: 15px;
-    border-width: 0.5px;
-  }
-  
-  /* Grid container scroll for small mobile */
-  .grid-container {
-    max-height: 35vh;
-    margin-bottom: 6px;
-  }
-}
 
-/* ===== EXTRA SMALL MOBILE (below 320px) ===== */
-@media (max-width: 319px) {
-  .Node {
-    width: 12px;
-    height: 12px;
-  }
-  
-  .node-type-selector button,
-  .controls button,
-  .feauters button {
-    max-width: 160px;
-    padding: 4px 8px;
-    font-size: 9px;
-  }
-  
-  .speed-control {
-    max-width: 160px;
-  }
-  
-  .grid-container {
-    max-height: 30vh;
-  }
-}
-
-/* ===== LANDSCAPE ORIENTATION OPTIMIZATIONS ===== */
-@media (max-height: 600px) and (orientation: landscape) {
-  .grid {
-    padding: 5px;
-    min-height: 100vh;
-    overflow-y: auto;
-  }
-  
-  .grid > p {
-    margin: 2px 0;
-    font-size: 11px;
-  }
-  
   .node-type-selector,
   .controls,
   .feauters {
-    padding: 4px;
-    margin-bottom: 4px;
+    padding: 6px;
+    gap: 4px;
   }
-  
+
   .node-type-selector button,
   .controls button,
   .feauters button {
-    padding: 4px 8px;
+    width: 100%;
+    padding: 5px;
     font-size: 10px;
   }
-  
-  .Node {
-    width: 18px;
-    height: 18px;
+
+  .speed-control {
+    width: 100%;
+    min-width: unset;
   }
-  
-  /* Better grid scrolling in landscape */
-  .grid-container {
-    max-height: 45vh;
-    overflow: auto;
+
+  .speed-control label {
+    font-size: 10px;
+  }
+
+  .grid p {
+    font-size: 11px;
   }
 }
 
-/* Ensure proper scrolling behavior */
+/* Ensure no overflow */
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Responsive Grid Node Scaling */
+.grid-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 5px auto;
+  padding: 5px;
+  width: 95%;
+  max-width: 100%;
   box-sizing: border-box;
 }
 
-/* Smooth scrolling for mobile */
-@media (max-width: 767px) {
-  html {
-    scroll-behavior: smooth;
+.row {
+  display: flex;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Make nodes auto-resize based on available width */
+.Node {
+  border: 1px solid #bdc3c7;
+  display: inline-block;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+/* Desktop Node Size */
+@media (min-width: 1025px) {
+  .Node {
+    width: 22px;
+    height: 22px;
   }
-  
+}
+
+/* Tablet Node Size */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .Node {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Mobile Node Size (fits screen neatly with outline space) */
+@media (max-width: 768px) {
   .grid-container {
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    width: 90%;
+    padding: 8px;
+    margin: 0 auto;
+  }
+
+  .Node {
+    width: 14px;
+    height: 14px;
   }
 }
 
-/* Hover effects for non-touch devices */
-@media (hover: hover) {
-  .node-type-selector button:hover:not(:disabled),
-  .controls button:hover:not(:disabled),
-  .feauters button:hover:not(:disabled) {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+/* Very Small Screens (under 480px) */
+@media (max-width: 480px) {
+  .grid-container {
+    width: 92%;
+    padding: 6px;
+    margin: 0 auto;
   }
-}
 
-/* Disabled state consistency */
-.node-type-selector button:disabled,
-.controls button:disabled,
-.feauters button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none !important;
-  box-shadow: none !important;
+  .Node {
+    width: 10px;
+    height: 10px;
+  }
 }

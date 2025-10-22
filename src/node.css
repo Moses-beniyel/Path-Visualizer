@@ -1,0 +1,57 @@
+.node {
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  background-color: #f0f0f0;
+ 
+  transition: all 0.2s ease;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  margin: 0px 2px;
+  
+}
+
+.node-wall {
+  background-color: #333;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.node-start {
+  background-color: #4caf50;
+  box-shadow: 0 2px 6px rgba(0, 128, 0, 0.5);
+}
+
+.node-end {
+  background-color: #f44336;
+  box-shadow: 0 2px 6px rgba(255, 0, 0, 0.5);
+}
+
+.node:hover {
+  transform: scale(1.1);
+  box-shadow: 0 3px 7px rgba(0,0,0,0.2);
+}
+.node { width: 30px; height: 30px; border: 1px solid #ccc; display: inline-block; }
+.node.start { background-color: green; }
+.node.end { background-color: red; }
+.node.wall { background-color: black; }
+.node.visited { background-color: rgb(185, 230, 173); }
+.node.path { background-color: gold; }
+
+.Node {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 768px) {
+  .Node {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .Node {
+    width: 10px;
+    height: 10px;
+  }
+}

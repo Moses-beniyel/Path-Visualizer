@@ -1,0 +1,315 @@
+/* General Styles */
+.grid {
+  padding: 10px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Instructions */
+.grid  p {
+  text-align: center;
+  margin: 5px 0 10px 0;
+  color: #333;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+/* Node Type Selector */
+.node-type-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+ 
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.node-type-selector label {
+  font-weight: bold;
+  color: #333;
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.node-type-selector button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  min-width: 70px;
+  font-size: 12px;
+}
+
+.node-type-selector button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.node-type-selector button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Button Colors */
+.node-type-selector button.wall {
+  background-color: #2c3e50;
+  color: white;
+}
+
+.node-type-selector button.start {
+  background-color: #27ae60;
+  color: white;
+}
+
+.node-type-selector button.end {
+  background-color: #e74c3c;
+  color: white;
+}
+
+/* Controls Section */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #ecf0f1;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.controls button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  min-width: 100px;
+  color: white;
+  font-size: 12px;
+}
+
+.controls button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.controls button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Algorithm Button Colors */
+.controls button:nth-child(1) {
+  background-color: #3498db; /* BFS - Blue */
+}
+
+.controls button:nth-child(2) {
+  background-color: #9b59b6; /* DFS - Purple */
+}
+
+.controls button:nth-child(3) {
+  background-color: #f39c12; /* Enhanced BFS - Orange */
+}
+
+/* Grid Container - Takes remaining space */
+.grid-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 10px;
+  min-height: 0; /* Important for flex child to shrink properly */
+  gap: 2px;
+}
+
+.row {
+  display: flex;
+  flex-shrink: 0;
+}
+
+/* Features Section */
+.feauters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.feauters button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  min-width: 120px;
+  color: white;
+  font-size: 12px;
+}
+
+.feauters button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.feauters button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Features Button Colors */
+.feauters button:nth-child(1) {
+  background-color: #e67e22; /* Clear Path - Orange */
+}
+
+.feauters button:nth-child(2) {
+  background-color: #95a5a6; /* Clear Walls - Gray */
+}
+
+.feauters button:nth-child(3) {
+  background-color: #34495e; /* Reset Start/End - Dark Blue */
+}
+
+.feauters button:nth-child(4) {
+  background-color: #16a085; /* Random Walls - Teal */
+}
+
+.feauters button:nth-child(6) {
+  background-color: #c0392b; /* Pause/Resume - Red */
+}
+
+/* Speed Control */
+.speed-control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 150px;
+  padding: 8px;
+  background-color: white;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.speed-control input[type="range"] {
+  width: 100%;
+  max-width: 150px;
+  height: 4px;
+}
+
+.speed-control label {
+  font-weight: bold;
+  color: #333;
+  font-size: 12px;
+}
+
+/* Node Styles - Make nodes smaller to fit */
+.Node {
+  border: 1px solid #bdc3c7;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+.Node-start {
+  background-color: #27ae60;
+}
+
+.Node-end {
+  background-color: #e74c3c;
+}
+
+.Node-wall {
+  background-color: #2c3e50;
+}
+
+.Node-visited {
+  background-color: rgba(52, 152, 219, 0.3);
+}
+
+.Node-path {
+  background-color: #f1c40f;
+}
+
+/* Responsive Design for very small screens */
+@media (max-width: 768px) {
+  .grid {
+    padding: 5px;
+    height: 100vh;
+  }
+  
+  .node-type-selector,
+  .controls,
+  .feauters {
+    gap: 5px;
+  }
+  
+  .node-type-selector button,
+  .controls button,
+  .feauters button {
+    min-width: 60px;
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+  
+  .speed-control {
+    min-width: 120px;
+  }
+  
+  .grid > p {
+    font-size: 12px;
+    margin: 3px 0 6px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    padding: 3px;
+  }
+  
+  .node-type-selector button,
+  .controls button,
+  .feauters button {
+    min-width: 50px;
+    padding: 5px 8px;
+    font-size: 10px;
+  }
+  
+  .speed-control {
+    min-width: 100px;
+  }
+  
+  .speed-control label {
+    font-size: 10px;
+  }
+}
+
+/* Ensure no vertical overflow */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
